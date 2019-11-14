@@ -8,11 +8,41 @@ html{
 
 .container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: grey;
+    height: 100vh;
 }
 
+.card{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    height: 50vh;
+}
+
+.card-left{
+    display: flex;
+    flex-direction: row;
+    background-color: salmon;
+    flex-grow: 6;
+    align-content: space-between;
+    align-items: flex-end;
+}
+
+.card-right{
+    display:flex;
+    flex-direction: row;
+    background-color: green;
+    flex-grow: 4;
+}
+
+#city{
+    font-size: 2em;
+}
+
+#temp{
+    font-size: 3em;
+}
 
 

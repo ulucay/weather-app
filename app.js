@@ -1,5 +1,5 @@
 let request = new XMLHttpRequest();
-const APIKEY = 2d8da3c8a917b7f3c177458dd82c4d27;
+const APIKEY = '2d8da3c8a917b7f3c177458dd82c4d27';
 let city = 'Bursa';
 
 

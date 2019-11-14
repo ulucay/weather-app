@@ -14,12 +14,12 @@ request.onload = function() {
         let main = Math.trunc(data.main.temp);
         let wind = data.wind.speed;
         let humidity = data.main.humidity + "%";
-
     
         let tempSpan = document.querySelector("#temp");
         let citySpan = document.querySelector("#city");
         let windSpan = document.querySelector("#wind");
         let humiditySpan = document.querySelector("#humidity");
+        let iconSpan = document.querySelector("#icon");
 
         citySpan.textContent = city;
         tempSpan.textContent = main;

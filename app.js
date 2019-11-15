@@ -1,40 +1,48 @@
-let request = new XMLHttpRequest();
 const APIKEY = '2d8da3c8a917b7f3c177458dd82c4d27';
 let city = 'Austin';
 
+navigator.geolocation.getCurrentPosition(
+    function success(position) {
+      // for when getting location is a success
+      console.log('latitude', position.coords.latitude, 
+                  'longitude', position.coords.longitude);
+    },
+); 
 
-request.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKEY}`, true);
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${APIKEY}`)
+.then( response => {
+    return response.json();
+})
+.then( data => {
+    console.log(data);
 
-request.onload = function() {
-    let data = JSON.parse(this.response);
+    let temp = Math.trunc(data.main.temp);
+    let weather = data.weather[0].description;
+    let city = data.name;
+    let humidity = data.main.humidity;
+    let wind = data.wind.speed;
 
-    if(request.status >= 200 && request.status < 400) {
-        
-        let city = data.name;
-        let main = Math.trunc(data.main.temp);
-        let wind = data.wind.speed;
-        let humidity = data.main.humidity + "%";
-    
-        let tempSpan = document.querySelector("#temp");
-        let citySpan = document.querySelector("#city");
-        let windSpan = document.querySelector("#wind");
-        let humiditySpan = document.querySelector("#humidity");
-        let iconSpan = document.querySelector("#icon");
+    console.log(temp);
+    console.log(weather);
+    console.log(city);
+    console.log(humidity);
+    console.log(wind);
 
-        citySpan.textContent = city;
-        tempSpan.textContent = main;
-        windSpan.textContent = wind;
-        humiditySpan.textContent = humidity;
+    let tempSpan = document.querySelector("#temp");
+    let citySpan = document.querySelector("#city");
+    let dateSpan = document.querySelector("#date");
+    let iconSpan = document.querySelector("#icon");
+    let humiditySpan = document.querySelector("#humidity");
+    let windSpan = document.querySelector("#wind");
+
+    tempSpan.textContent = temp;
+    citySpan.textContent = city;
+    humiditySpan.textContent = humidity;
+    windSpan.textContent = wind;
+})
+.catch(error => {
+    console.log(error);
+});
 
 
-        console.log(city);
-        console.log(main);
-  
-    } 
-    else
-    {
-        console.log('error')
-    }
-};
 
-request.send();
